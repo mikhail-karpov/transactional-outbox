@@ -1,0 +1,11 @@
+spring:
+  application.name: transactional-outbox
+  main.banner-mode: off
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todos
+    username: todos
+    password: todos
+  jpa:
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
