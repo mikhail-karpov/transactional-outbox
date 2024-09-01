@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.util.Objects;
 
@@ -12,7 +13,13 @@ import java.util.Objects;
 public class TodoEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "todos_seq")
+  @SequenceGenerator(
+      name = "todos_seq",
+      sequenceName = "todos_seq",
+      initialValue = 1000,
+      allocationSize = 25
+  )
   private Long id;
 
   private String todo;

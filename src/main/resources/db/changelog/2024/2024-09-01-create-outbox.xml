@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2024-09-01-create-outbox" author="mikhail-karpov">
+        <createSequence sequenceName="outbox_seq" startValue="1000" incrementBy="25"/>
+        <createTable tableName="outbox">
+            <column name="id" type="bigint" defaultValue="nextval('outbox_seq')">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="outbox_pk"/>
+            </column>
+            <column name="aggregate_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payload" type="jsonb">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp with timezone" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

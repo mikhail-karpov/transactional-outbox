@@ -7,8 +7,12 @@ spring:
     password: todos
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
+    jdbc:
+      time_zone: UTC
     open-in-view: false
+  liquibase:
+    change-log: classpath:db/changelog/changelog.xml
 
 app:
   outbox:
@@ -16,5 +20,5 @@ app:
 
 logging:
   level:
-    root: WARN
+    root: INFO
     org.hibernate.SQL: DEBUG

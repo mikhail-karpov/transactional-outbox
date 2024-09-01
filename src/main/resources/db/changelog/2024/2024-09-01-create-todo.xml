@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2024-09-01-create-todo" author="mikhail-karpov">
+        <createSequence sequenceName="todos_seq" startValue="1000" incrementBy="25"/>
+        <createTable tableName="todos">
+            <column name="id" type="bigint" defaultValue="nextval('todos_seq')">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="todos_pk"/>
+            </column>
+            <column name="todo" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

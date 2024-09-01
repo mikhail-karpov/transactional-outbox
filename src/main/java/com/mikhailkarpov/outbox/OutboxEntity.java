@@ -7,6 +7,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.time.Instant;
@@ -24,7 +25,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class OutboxEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "outbox_seq")
+  @SequenceGenerator(
+      name = "outbox_seq",
+      sequenceName = "outbox_seq",
+      initialValue = 1000,
+      allocationSize = 25
+  )
   private Long id;
 
   private String aggregateId;
