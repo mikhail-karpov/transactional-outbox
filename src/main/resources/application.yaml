@@ -9,3 +9,12 @@ spring:
     hibernate:
       ddl-auto: create
     open-in-view: false
+
+app:
+  outbox:
+    scheduler-cron: '0 * * * * *'
+
+logging:
+  level:
+    root: WARN
+    org.hibernate.SQL: DEBUG
