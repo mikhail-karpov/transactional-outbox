@@ -25,7 +25,7 @@ public class OutboxService {
 
   @Transactional
   public void send(OutboxSendingStrategy strategy) {
-    Sort sort = Sort.by(Direction.DESC, "createdAt");
+    Sort sort = Sort.by(Direction.ASC, "createdAt");
     for (OutboxEntity outboxEntity : outboxRepository.findAll(sort)) {
         strategy.send(new Outbox(
             outboxEntity.getAggregateId(),
