@@ -1,7 +1,9 @@
 package com.mikhailkarpov.outbox;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface OutboxSendingStrategy {
 
-  void send(Outbox outbox);
+  CompletableFuture<Void> send(Outbox outbox);
 
 }
