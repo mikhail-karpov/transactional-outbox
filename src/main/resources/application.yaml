@@ -2,9 +2,9 @@ spring:
   application.name: transactional-outbox
   main.banner-mode: off
   datasource:
-    url: jdbc:postgresql://localhost:5432/todos
-    username: todos
-    password: todos
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:todos}
+    username: ${POSTGRES_USER:todos}
+    password: ${POSTGRES_PASSWORD:todos}
   jpa:
     hibernate:
       ddl-auto: validate

@@ -4,22 +4,16 @@ Demo application implementing Transactional Outbox pattern with Spring Boot, Pos
 
 ## How to Run
 
-Run Docker containers:
 ```shell
-docker compose up -d
+docker compose up -d --build
 ```
 
-Then run application:
-```shell
-./gradlew bootRun
-```
-
-## Usefull commands
+## Useful commands
 
 View outbox topic
 ```shell
 docker exec -it kafka sh
-kafka-console-consumer --bootstrap-server kafka:29092 --topic outbox
+kafka-console-consumer --bootstrap-server kafka:29092 --topic outbox --from-beginning
 ```
 
 Create todo:
@@ -37,5 +31,5 @@ curl http://localhost:8080/api/todos
 
 Delete todo:
 ```shell
-curl -X DELETE http://localhost:8080/api/todos/1053
+curl -X DELETE http://localhost:8080/api/todos/1000
 ```
